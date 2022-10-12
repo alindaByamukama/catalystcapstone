@@ -1,0 +1,41 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Home | UFARM
+    link(href='/bootstrap-5.2.1-dist/css/bootstrap.min.css', rel='stylesheet')
+  body
+    // header
+    .container
+      header.d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-md-between.py-3.mb-4.border-bottom
+        a.d-flex.align-items-center.col-md-3.mb-2.mb-md-0.text-dark.text-decoration-none(href='/')
+          span.fs-4 UFARM
+        ul.nav.col-12.col-md-auto.mb-2.justify-content-center.mb-md-0
+          li
+            a.nav-link.px-2.link-secondary(href='#') Home
+          li
+            a.nav-link.px-2.link-dark(href='#') Produce
+          li
+            a.nav-link.px-2.link-dark(href='#') FAQs
+        .col-md-3.text-end
+          button.btn.btn-outline-primary.me-2(action='/loginUser', type='button') Login
+    // hero section
+    .container.col-xxl-8.px-4.py-5
+      .row.flex-lg-row-reverse.align-items-center.g-5.py-5
+        .col-10.col-sm-8.col-lg-6
+          img.d-block.mx-lg-auto.img-fluid(src='/images/alexander-schimmeck-2zJhA9RSkys-unsplash.jpg', alt='Photo by Alexander Schimmeck on Unsplash', loading='lazy')
+        .col-lg-6
+          h1.display-5.fw-bold.lh-1.mb-3 Welcome to UFARM
+          p.lead
+            | UFARM is an e-commerce platform designed to connect the urban farmer to you! Browse our selection of produce ethically sourced from urban farmers nearby. Avoid the market hustle, UFARM has got your produce needs covered.
+          .d-grid.gap-2.d-md-flex.justify-content-md-start
+            button.btn.btn-primary.btn-lg.px-4.me-md-2(type='button') Browse Produce
+            button.btn.btn-outline-secondary.btn-lg.px-4(action='/registerUser', type='button') Sign Up
+    // footer section
+    footer.footer.mt-auto.py-3.bg-light
+      .container
+        span.text-muted
+          | UFARM_Alinda_B &copy; 2022_Catalyst_Cohort12
+    script(src='/bootstrap-5.2.1-dist/js/bootstrap.bundle.min.js')

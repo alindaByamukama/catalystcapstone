@@ -26,7 +26,6 @@ const checkFirstName = () => {
     telephone.focus();
     return true;
   } else {
-    alert("Please enter your first name using letters of the alphabet only");
     firstName.style.border = "2px solid red";
   }
 };
@@ -42,7 +41,6 @@ const checkLastName = () => {
     telephone.focus();
     return true;
   } else {
-    alert("Please enter your first name using letters of the alphabet only");
     lastName.style.border = "2px solid red";
   }
 };
@@ -58,7 +56,6 @@ const checkTelephone = () => {
     email.focus();
     return true;
   } else {
-    alert("Please enter your phone number using numbers only");
     telephone.style.border = "2px solid red";
   }
 };
@@ -74,7 +71,6 @@ const checkEmail = () => {
     password.focus();
     return true;
   } else {
-    alert("Please enter your email and follow the proper email format");
     email.style.border = "2px solid red";
   }
 };
@@ -86,7 +82,6 @@ const checkPassword = () => {
 
   // check if input is empty
   if (p_word == "") {
-    alert("Please input your password");
     password.style.border = "2px solid red";
   }
   console.log(p_word);
@@ -99,12 +94,10 @@ const checkConfirmPassword = () => {
 
   // check if input is empty
   if (c_password == "") {
-    alert("Please input your password");
     confirmPassword.style.border = "2px solid red";
   }
   // check if emails dont match
   if (c_password != p_word) {
-    alert("Your passwords does not match, try again please");
     password.style.border = "2px solid red";
     confirmPassword.style.border = "2px solid red";
   }

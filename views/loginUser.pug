@@ -1,0 +1,24 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title UFarm | Singin
+    link(rel='stylesheet', href='/css/style.css')
+  body
+    .container
+      form#signup.form(action='/loginUser', name='registration', method='POST')
+        h1 Sign In
+        .form-field
+          label(for='email') Email:
+          input#email(type='email', name='email', autocomplete='off', onblur='checkEmail()')
+          small
+        .form-field
+          label(for='password') Password:
+          input#password(type='password', name='password', autocomplete='off', onblur='checkPassword()', required='')
+          small
+        .form-field
+          input#submit.btn(type='submit', value='Sign Up')
+          small
+    script(src='/js/validation.js')
