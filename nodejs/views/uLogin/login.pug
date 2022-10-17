@@ -1,0 +1,15 @@
+extends layout
+      form#signup.form(action='/login', name='registration', method='POST')
+        h1 Sign In
+        .form-field
+          label(for='email') Email:
+          input#email(type='email', name='email', autocomplete='off', onblur='checkEmail()')
+          small
+        .form-field
+          label(for='password') Password:
+          input#password(type='password', name='password', autocomplete='off', onblur='checkPassword()', required='')
+          small
+        .form-field
+          input#submit.btn(type='submit', value='Sign Up')
+          small
+    script(src='/js/validation.js')
