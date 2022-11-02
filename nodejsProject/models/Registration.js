@@ -18,7 +18,6 @@ const userSchema = new mongoose.Schema({
   },
   dob: {
     type: String,
-    required: true,
   },
   email: {
     type: String,
@@ -28,9 +27,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  address: {
+  division: {
     type: String,
     required: true,
+  },
+  parish: {
+    type: String,
   },
   gender: {
     type: String,
@@ -49,15 +51,11 @@ const userSchema = new mongoose.Schema({
   mStatus: {
     type: String,
   },
-  password: {
-    type: String,
-    required: true,
-  },
 });
 
 // specifiy what we use to login
 userSchema.plugin(passportLocalMongoose, {
-  usernameField: 'userId',
+  usernameField: "userId",
 });
 // collection is called RegisterUser in mongodb
 module.exports = mongoose.model("RegisterUser", userSchema);

@@ -1,0 +1,23 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title UFARM | Update Produce Status
+    link(rel='stylesheet', href='/css/form.css')
+  body
+    .form-container
+        form(action='/produce/approve?id='+produce._id name='approveproduce', enctype="multipart/form-data", method='POST')
+            h1 Update Produce Status
+                br
+                hr
+                
+                label(for='status') Product Status
+                
+                select#status.input-field(name="status") 
+                  option(value="status") Select Status
+                  option(value="Pending" selected = produce.Pending === 'Pending') Pending  
+                  option(value="Approved" selected = produce.Approved === 'Approved') Approved
+
+                button.button(name='submit', type='submit', value='Update Produce Status') Update Produce Status

@@ -10,11 +10,15 @@ const expressSession = require("express-session")({
   saveUninitialized: false,
 });
 // import user model
-const RegisterUser = require("./models/RegUser");
+const RegisterUser = require("./models/Registration");
 
 // IMPORTING ROUTE FILES
 
-const registrationRoutes = require("./routes/regRoutes");
+const registrationRoutes = require("./routes/registrationRoutes");
+const produceRoutes = require("./routes/produceRoutes");
+const authRoutes = require("./routes/authenticationRoutes");
+const publicRoutes = require("./routes/publicRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
 
 // INSTANTIATIONS
 
@@ -45,7 +49,7 @@ app.set("views", path.join(__dirname, "views"));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/public/images", express.static(__dirname + "/public/uploads"));
+app.use("/public/uploads", express.static(__dirname + "/public/uploads"));
 app.use(expressSession);
 
 // PASSPORT CONFIG MIDDLEWARE
@@ -62,6 +66,10 @@ passport.deserializeUser(RegisterUser.deserializeUser());
 // ROUTES
 
 app.use("/", registrationRoutes);
+app.use("/", produceRoutes);
+app.use("/", authRoutes);
+app.use("/", publicRoutes);
+app.use("/", dashboardRoutes);
 
 app.get("*", (req, res) => {
   res.send("404! This is an invalid URL.");
@@ -69,6 +77,4 @@ app.get("*", (req, res) => {
 
 // BOOTSTRAPPING SERVER
 
-app.listen(5000, () =>
-  console.log("Listening on port 5000 ... server complete")
-);
+app.listen(4000, () => console.log("Listening on port 4000 🚀"));
