@@ -6,10 +6,10 @@ block content
         span.navbar-brand.mb-0.fs-2.align-self-center UFARM
 
         nav.nav.d-flex.nav-pills
-            a.nav-link.active(aria-current='page', href='#') AO DASHBOARD
+            //- a.nav-link.active(aria-current='page', href='#') AO DASHBOARD
             //- a.nav-link(href='#') Registered FOs
-            a.nav-link(href='#') Registered FOs
-            a.nav-link(href='#') Product Reports
+            //- a.nav-link(href='#') Registered FOs
+            //- a.nav-link(href='#') Product Reports
             form(action="/logout", method="POST")     
                 button.nav-link(name='submit', type='submit') Logout
     .col-2
@@ -20,10 +20,11 @@ block content
                 h1 Hello, #{currentuser.firstname+" "+currentuser.lastname}
 
                 a.btn.btn-primary(href='#') Update Profile
+                
             br
             // Registered FOs
             .card.shadow
-              h5.card-header Registered FOs
+              h5.card-header Registered Farmer Ones
               .card-body
                 table 
                   thead 
@@ -44,14 +45,15 @@ block content
                             td #{farmerone.division}
                             td #{farmerone.parish}                
                             td  
-                              a.btn.btn-primary(href='/fo/update'+farmerone._id) Update
+                              a.btn.btn-primary(href='/update/'+farmerone._id, target='_blank') Update
                             td
-                              form(method='post' action='/fo/delete')
+                              form(method='post' action='/delete')
                                 input(type="hidden", placeholder='', name='id', value=farmerone._id)
                                 a.btn.btn-danger(href='#') Delete
             br
-            // Product Reports
+            
             .card.shadow
-              h5.card-header Product Reports
-              .card-body                
+              h5.card-header Register Farmer One
+              .card-body 
+                a.btn.btn-primary(href='/registration', target='_blank') Register Farmer One               
             br

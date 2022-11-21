@@ -19,6 +19,7 @@ const produceRoutes = require("./routes/produceRoutes");
 const authRoutes = require("./routes/authenticationRoutes");
 const publicRoutes = require("./routes/publicRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
+const userUpdateRoutes = require("./routes/userUpdateRoutes")
 
 // INSTANTIATIONS
 
@@ -70,6 +71,7 @@ app.use("/", produceRoutes);
 app.use("/", authRoutes);
 app.use("/", publicRoutes);
 app.use("/", dashboardRoutes);
+app.use("/", userUpdateRoutes);
 
 app.get("*", (req, res) => {
   res.send("404! This is an invalid URL.");

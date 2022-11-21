@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const connectEnsureLogin = require("connect-ensure-login");
-const UploadProduct = require("../models/Uploads");
+const Uploads = require("../models/Uploads");
 
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -32,7 +32,7 @@ router.post(
   upload.single("produceimg"),
   async (req, res) => {
     try {
-      const produce = new UploadProduct(req.body);
+      const produce = new Uploads(req.body);
       produce.produceimg = req.file.path;
       await produce.save();
       res.redirect("/dashboard/uf");
@@ -45,31 +45,31 @@ router.post(
 );
 
 // Updating produce list/product
-router.get("/produce/update/:id", async (req, res) => {
+router.get("/product/update/:id", async (req, res) => {
   try {
-    const updateproduct = await UploadProduct.findOne({ _id: req.params.id });
-    res.render("produce/updateproduce", { produce: updateproduct });
-    console.log('Product updated', updateproduct)
+    const updateproduct = await Uploads.findOne({ _id: req.params.id });
+    res.render("produce/updateproduce", { product: updateproduct });
+    console.log("Product updated", updateproduct);
   } catch (error) {
     res.status(400).send("Unable to update produce, try again");
   }
 });
 // post updated product to producelist
-router.post("/produce/update", async (req, res) => {
+router.post("/product/update", async (req, res) => {
   try {
-    await Upload.findOneAndUpdate({ _id: req.query.id }, req.body);
+    await Uploads.findOneAndUpdate({ _id: req.query.id }, req.body);
     res.redirect("/dashboard/uf");
   } catch (error) {
-    res.status(400).send("Unable to update produce, try again");
+    res.status(400).send("Unable to post update produce, try again");
   }
 });
 // update images
 
 // delete product
-router.post("/produce/delete", async (req, res) => {
+router.post("/product/delete", async (req, res) => {
   try {
-    await UploadProduct.deleteOne({ _id: req.query.id });
-    res.redirect("/dashboard/uf");
+    await UploadProduct.deleteOne({ _id: req.body.id });
+    res.redirect("back");
   } catch (error) {
     res.status(400).send("Unable to delete produce, try again");
   }
@@ -81,7 +81,7 @@ router.get("/produce/approve/:id", async (req, res) => {
   try {
     const updateproduct = await UploadProduct.findOne({ _id: req.params.id });
     res.render("produce/approveproduce", { produce: updateproduct });
-    console.log('Product approved', updateproduct)
+    console.log("Product approved", updateproduct);
   } catch (error) {
     res.status(400).send("Unable to approve produce, try again");
   }

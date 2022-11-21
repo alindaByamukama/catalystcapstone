@@ -1,83 +1,85 @@
 extends layout 
 block content
-      form#registrationForm(name='updateuser', action='/user/update', method='POST')
-        h1 Agricultural Officer Registration Form
+      form#updatefo(action='/update?id='+user._id, name='updatefo', enctype="multipart/form-data", method='POST')
+        h1 Update Farmer One
         hr
         br
         fieldset.fieldset
           legend Personal Details
           .fields
             label(for='firstname') First Name:
-            input#firstname.input-field(autocomplete='off', type='text', name='firstname', placeholder='Enter first name')
+            input#firstname.input-field(autocomplete='off', type='text', name='firstname', placeholder='Enter first name', value=user.firstname)
 
           .fields
             label(for='lastname') Second Name:
-            input#lastname.input-field(autocomplete='off', type='text', name='lastname', placeholder='Enter second name')
+            input#lastname.input-field(autocomplete='off', type='text', name='lastname', placeholder='Enter second name', value=user.lastname)
 
           .fields             
             label(for='gender') Gender:
             
             select#gender.input-field(name="gender") 
               option(value="selectGender") Select Gender 
-              option(value="female") Female 
-              option(value="male") Male 
-              option(value="other") Other
+              option(value="female" selected = user.gender === 'female') Female 
+              option(value="male" selected = user.gender === 'male') Male 
+              option(value="other" selected = user.gender === 'other') Other
           .fields
             label(for='mStatus') Marital Status:
             
             select#mStatus.input-field(name="mStatus") 
               option(value="maritalStatus") Marital Status
-              option(value="single") Single
-              option(value="married") Married
-              option(value="other") Other
+              option(value="single" selected = user.mStatus === 'single') Single
+              option(value="married" selected = user.mStatus === 'married') Married
+              option(value="other" selected = user.mStatus === 'otther') Other
           .fields
             label(for='dob') D.O.B:
-            input#dob.input-field(autocomplete='off', type='text', placeholder='dd/mm/yyyy', name='dob')
+            input#dob.input-field(autocomplete='off', type='text', placeholder='dd/mm/yyyy', name='dob', value=user.dob)
 
           .fields
             label(for='nin') NIN:
-            input#nin.input-field(autocomplete='off', type='text', placeholder='AB12345678ABCD', name='nin')
+            input#nin.input-field(autocomplete='off', type='text', placeholder='AB12345678ABCD', name='nin', value=user.nin)
         br
         fieldset.fieldset
           legend Contact Details
           .fields
             label(for='telephone') Mobile Number
             |  
-            input#telephone.input-field(autocomplete='off', type='numbers', placeholder='+256771234567', name='telephone')
+            input#telephone.input-field(autocomplete='off', type='numbers', placeholder='+256771234567', name='telephone', value=user.telephone)
           
           .fields
             label(for='email') Email
-            input#email.input-field(type='text', placeholder='Enter Email', name='email')
+            input#email.input-field(type='text', placeholder='Enter Email', name='email', value=user.email)
           
           .fields             
             label(for='division') Division:
-            //- input#address.input-field(autocomplete='off', type='text', placeholder='Enter your Address', name='address')
             select#division.input-field(name="division") 
               option(value="selectAddress") Select division
-              option(value="kampalaCentral") Kampala Central 
-              option(value="kawempe") Kawempe 
-              option(value="makindye") Makindye 
-              option(value="nakawa") Nakawa   
-              option(value="lubaga") Lubaga 
+              option(value="kampalaCentral" selected=user.division) Kampala Central 
+              option(value="kawempe" selected = user.division === 'kawempe') Kawempe 
+              option(value="makindye" selected = user.division === 'makindye') Makindye 
+              option(value="nakawa" selected = user.division === 'nakawa') Nakawa   
+              option(value="lubaga" selected = user.division === 'lubaga') Lubaga 
           .fields             
             label(for='parish') Parish:
-            input#parish.input-field(autocomplete='off', type='text', placeholder='Enter your Parish', name='parish')
+            input#parish.input-field(autocomplete='off', type='text', placeholder='Enter your Parish', name='parish', value=user.parish)
+
+          .fields
+            label.bold(for='userId') User ID:
+            input#userId.input-field(autocomplete='off', type='text', placeholder='AO-MASAJJA-0001', name='userId', value=user.userId)
 
         br
         fieldset.fieldset
           legend Profile Details
           .fields
             label.bold(for='role') Role:
-            //- input#role.input-field(autocomplete='off', type='text', placeholder='Enter your role', name='role')
             select.input-field(name="role", id="role")
               option(value="selectRole") Select Role
-              option(value="agriculturalOfficer") Agricultural Officer
-              option(value="farmerOne") Farmer One
-              option(value="urbanFarmer") Urban Farmer
+              option(value="agriculturalofficer" selected = user.role === 'agriculturalofficer') Agricultural Officer
+              option(value="farmerone" selected = user.role === 'farmerone') Farmer One
+              option(value="urbanfarmer" selected = user.role === 'urbanfarmer') Urban Farmer
             
           .fields
             label.bold(for='regDate') Update Date:
-            input#regDate.input-field(autocomplete='off', type='text', placeholder='dd/mm/yyyy', name='regDate')
+            input#regDate.input-field(autocomplete='off', type='text', placeholder='dd/mm/yyyy', name='regDate', value=user.regDate)
 
         .row
-          button.button(name='submit', type='submit', value='Update User')
+          button.button(name='submit', type='submit', value='Update User') Update Farmer One

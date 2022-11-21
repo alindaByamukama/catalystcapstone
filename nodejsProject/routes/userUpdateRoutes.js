@@ -1,45 +1,44 @@
 const express = require("express");
 const router = express.Router();
-
-// import models
 const RegisterUser = require("../models/Registration");
 
-// Retrieving produce list/products from db
-// router.get("/producelist", async (req, res) => {
-//     try {
-//       let products = await Ufupload.find();
-//       res.render("lists/producelist", { products: products });
-//     } catch (error) {
-//       res.status(400).send("Unable to get Produce list");
-//       console.log(error);
-//     }
-//   });
+router.get("/update/:id", async (req, res) => {
+  try {
+    const updatefarmerone = await RegisterUser.findOne({
+      _id: req.params.id,
+    });
+    res.render("user/update", { user: updatefarmerone });
+    // console.log("FO Updated: ", updatefarmerone);
+  } catch (error) {
+    res.status(400).send("Unable to update FO, please try again");
+  }
+});
 
-// Updating farmer one list
-router.get("/fo/update/:id", async (req, res) => {
+router.post("/update", async (req, res) => {
   try {
-    const updatefo = await RegisterUser.findOne({ _id: req.params.id });
-    res.render("user/update", { produce: updatefo });
+    await RegisterUser.findOneAndUpdate({ _id: req.query.id }, req.body);
+    req.session.user = req.user
+    console.log("This is the user -->", req.session.user);
+    if (req.user.role === "farmerone") {
+      res.redirect("/dashboard/fo");
+    } else if (req.user.role === "urbanfarmer") {
+      res.redirect("/dashboard/uf");
+    } else if (req.user.role === "agriculturalofficer") {
+      res.redirect("/dashboard/ao");
+    } else {
+      res.send('Sorry your sessions seems to have experied, try again or register')
+    }
   } catch (error) {
-    res.status(400).send("Unable to update user, try again");
+    res.status(400).send("Unable to post updated FO, please try again");
   }
 });
-// post updated product to producelist
-router.post("/fo/update", async (req, res) => {
+
+router.post("/delete", async (req, res) => {
   try {
-    await Ufupload.findOneAndUpdate({ _id: req.query.id }, req.body);
+    await Register.deleteOne({ _id: req.query.id });
     res.redirect("/dashboard/ao");
   } catch (error) {
-    res.status(400).send("Unable to update user, try again");
-  }
-});
-// delete product
-router.post("/fo/delete", async (req, res) => {
-  try {
-    await Ufupload.deleteOne({ _id: req.query.id });
-    res.redirect("/dashboard/ao");
-  } catch (error) {
-    res.status(400).send("Unable to delete user, try again");
+    res.status(400).send("Unable to delete FO, try again");
   }
 });
 

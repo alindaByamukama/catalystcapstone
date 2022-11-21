@@ -52,33 +52,10 @@ block content
                                     td #{product.uploadDate}
                                     //- td #{moment(us 
                                     td
-                                        a.btn.btn-primary.btn-block(href='/produce/update/'+product._id) Update
+                                        a.btn.btn-primary.btn-block(href='/product/update/'+product._id target='_blank') Update
                                     td
-                                        form(method="post" action='/produce/delete')
+                                        form(method="post" action='/product/delete')
                                             input(type="hidden", placeholder="", name="id", value=product._id)
                                             button.btn.btn-danger.btn-block(type="submit") Delete         
             br
             a.btn.btn-primary(href='/uploadproduce') Upload Product
-        br
-        // Product Reports
-        .card.shadow
-          h5.card-header Product Reports
-          .card-body
-            
-        
-        br
-        // Product Orders
-        .card.shadow
-          h5.card-header Customer Orders
-          .card-body
-            
-            a.btn.btn-primary(href='#') Confirm
-            a.btn.btn-primary(href='#') Deny
-        br
-        //- Fullfilled Product Orders
-        .card.shadow
-          h5.card-header Completed Product Orders
-          .card-body
-            
-            a.btn.btn-primary(href='#') View More
-        br

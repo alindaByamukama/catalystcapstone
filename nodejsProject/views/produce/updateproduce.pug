@@ -8,34 +8,34 @@ html(lang='en')
     link(rel='stylesheet', href='/css/style.css')
   body
     .form-container
-        form(action='/produce/update?id='+produce._id name='updateproduce', enctype="multipart/form-data", method='POST')
+        form(action='/produce/update?id='+product._id name='updateproduce', enctype="multipart/form-data", method='POST')
             h1 Produce Update Form
                 br
                 hr
                 label(for='produceimg') Produce Image:
-                input#produceimg.input-field(type='file', name='produceimg', value=produce.produceimg)
+                input#produceimg.input-field(type='file', name='produceimg', value=product.produceimg)
 
                 label(for='producename') Produce Name
-                input#producename.input-field(autocomplete='off', type='text', name='producename', value=produce.producename)                
+                input#producename.input-field(autocomplete='off', type='text', name='producename', value=product.producename)                
 
                 label(for='produceprice') Produce Price
-                input#produceprice.input-field(autocomplete='off', type='text', name='produceprice', value=produce.produceprice)
+                input#produceprice.input-field(autocomplete='off', type='text', name='produceprice', value=product.produceprice)
 
                 label(for='producequantity') Produce Quantity
-                input#producequantity.input-field(autocomplete='off', type='text', name='producequantity', value=produce.producequantity)
+                input#producequantity.input-field(autocomplete='off', type='text', name='producequantity', value=product.producequantity)
                 select#measurement.input-field(name="measurement") 
                   option(value="selectProduce") Select Measurement
-                  option(value="poultry" selected = produce.producequantity === 'Poultry') Kilogram  
-                  option(value="dairy" selected = produce.producequantity === 'Poultry') Litre
+                  option(value="kilogram" selected = product.producequantity === 'kilogram') Kilogram  
+                  option(value="litre" selected = product.producequantity === 'litre') Litre
 
                 label(for='producetype') Produce Category
                 select#producetype.input-field(name="producetype") 
                   option(value="selectProduce" ) Select Produce Type
-                  option(value="poultry" selected = produce.producetype === 'Poultry') Poultry 
-                  option(value="dairy" selected = produce.producetype === 'dairy') Dairy
-                  option(value="horticulture" selected = produce.producetype === 'horticulture') Horticulture
+                  option(value="poultry" selected = product.producetype === 'Poultry') Poultry 
+                  option(value="dairy" selected = product.producetype === 'dairy') Dairy
+                  option(value="horticulture" selected = product.producetype === 'horticulture') Horticulture
             
                 label.bold(for='uploadDate') Upload Date:
-                input#uploadDate.input-field(autocomplete='off', type='text', placeholder='dd/mm/yyyy', name='uploadDate', value=produce.uploadDate)
+                input#uploadDate.input-field(autocomplete='off', type='text', placeholder='dd/mm/yyyy', name='uploadDate', value=product.uploadDate)
 
                 button.button(name='submit', type='submit', value='Update Produce') Update Produce
