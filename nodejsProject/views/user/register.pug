@@ -1,87 +1,115 @@
-extends layout 
-block content
-      form#registrationForm(name='registrationForm', action='/registration', method='POST')
-        h1 UFARM Admin Registration Form
-        hr
-        br
-        fieldset.fieldset
-          legend Profile Details
-          .fields
-            label(for='firstname') First Name:
-            input#firstname.input-field(autocomplete='off', type='text', name='firstname', placeholder='Enter first name')
-
-          .fields
-            label(for='lastname') Second Name:
-            input#lastname.input-field(autocomplete='off', type='text', name='lastname', placeholder='Enter second name')
-
-          .fields             
-            label(for='gender') Gender:
-            //- input#gender.input-field(autocomplete='off', type='text', placeholder='Enter your gender', name='gender')
-            select#gender.input-field(name="gender") 
-              option(value="selectGender") Select Gender 
-              option(value="female") Female 
-              option(value="male") Male 
-              option(value="other") Other
-          .fields
-            label(for='mStatus') Marital Status:
-            //- input#mStatus.input-field(autocomplete='off', type='text', placeholder='Enter your marital status', name='mStatus')
-            select#mStatus.input-field(name="mStatus") 
-              option(value="maritalStatus") Marital Status
-              option(value="single") Single
-              option(value="married") Married
-              option(value="other") Other
-          .fields
-            label(for='dob') D.O.B:
-            input#dob.input-field(autocomplete='off', type='text', placeholder='dd/mm/yyyy', name='dob')
-
-          .fields
-            label(for='nin') NIN:
-            input#nin.input-field(autocomplete='off', type='text', placeholder='AB12345678ABCD', name='nin')
-
-          .fields
-            label(for='telephone') Mobile Number
-            |  
-            input#telephone.input-field(autocomplete='off', type='numbers', placeholder='+256771234567', name='telephone')
-          
-          .fields
-            label(for='email') Email
-            input#email.input-field(type='text', placeholder='Enter Email', name='email')                   
-
-        br
-        fieldset.fieldset
-          legend Login Details
-          .fields
-            label.bold(for='role') Role:
-            //- input#role.input-field(autocomplete='off', type='text', placeholder='Enter your role', name='role')
-            select.input-field(name="role", id="role")
-              option(value="selectrole") Select Role
-              option(value="agriculturalofficer") Agricultural Officer
-              option(value="farmerone") Farmer One
-              option(value="urbanfarmer") Urban Farmer
-
-          .fields             
-            label(for='division') Division:
-            //- input#address.input-field(autocomplete='off', type='text', placeholder='Enter your Address', name='address')
-            select#division.input-field(name="division") 
-              option(value="selectAddress") Select division
-              option(value="kampalaCentral") Kampala Central 
-              option(value="kawempe") Kawempe 
-              option(value="makindye") Makindye 
-              option(value="nakawa") Nakawa   
-              option(value="lubaga") Lubaga 
-          .fields             
-            label(for='parish') Parish:
-            input#parish.input-field(autocomplete='off', type='text', placeholder='Enter your Parish', name='parish')
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Registration Form
+    link(href="/bootstrap-5.2.1-dist/css/bootstrap.min.css", rel="stylesheet")
+    link(rel='stylesheet', href='/css/registration/style.css')
+    
+  body
+    // header
+    .container
+      header.d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-md-between.py-3.mb-4.border-bottom
+        a.d-flex.align-items-center.col-md-3.mb-2.mb-md-0.text-dark.text-decoration-none(
+          href="/"
+        )
+          span.fs-4 UFARM
+        ul.nav.col-12.col-md-auto.mb-2.justify-content-center.mb-md-0
+          li
+            a.nav-link.px-2.link-dark(href="#") FAQs
+        .col-md-3.text-end
+          a.btn.btn-outline-primary.me-2(href="/landing") Logout
+    .form-body          
+      .form-container
+        h1 Registration Form
+        // Form
+        form#registrationForm(name='registrationForm', action='/registration', method='POST')
+          fieldset
+            legend Personal Details
+            .form-row
+              // Full Name
+              .form-group
+                label(for='fullname') Full Name
+                input#name(type='text', onblur='validateFullName()', placeholder='Full Name', name='fullname', minlength='3', maxlength='100')
+              // Phone Number
+              .form-group
+                label(for='phone') Phone Number
+                input#phone(type='tel', onblur='validatePhone()',placeholder='+256771234567', name='phone')
+            .form-row
+              // Gender
+              .form-group
+                label(for='gender') Gender
+                select#gender(name='gender', required, onblur='validateGender()')
+                  option(value='selectgender') Select Gender
+                  option(value='female') Female
+                  option(value='male') Male
+                  option(value='other') Other
+              // Marital Status
+              .form-group
+                label(for='mstatus') Marital Status
+                select#mstatus(name='mstatus', onblur='validateMstatus()')
+                  option(value='selectmstatus') Select
+                  option(value='single') Single
+                  option(value='married') Married
+                  option(value='other') Other
+              // DOB
+              .form-group
+                label(for='dob') Date of Birth
+                input#dob(type='text', name='dob', onblur='validateDob()',pattern='^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$', placeholder='Enter DD/MM/YYYY' )
+            .form-row
+              // Email Address
+              .form-group
+                label(for='email') Email Address
+                input#email(type='email', placeholder='youremail@address.com', name='email', onblur='validateEmail()')
+              // NIN
+              .form-group
+                label(for='nin') National Identity Number
+                input#nin(type='text', name='nin', placeholder='AB12345678ABCD', onblur='validateNin()')
+          fieldset
+            legend Login Details
+            .form-row
+              // ufarm role
+              .form-group
+                label(for='role') Role
+                select#role(name='role', onblur='validateRole()')
+                  option(value='selectrole') Select Role
+                  option(value='agriculturalofficer')
+                    | Agricultural Officer
+                  option(value='farmerone') Farmer One
+                  option(value='othurbanfarmerer') Urban Farmer
+              .form-group
+                // Division
+                label(for='division') Division
+                select#division(name='division', onblur='validateDivision()')
+                  option(value='selectdivision') Select division
+                  option(value='kampalaCentral') Kampala Central
+                  option(value='kawempe') Kawempe
+                  option(value='makindye') Makindye
+                  option(value='nakawa') Nakawa
+                  option(value='Rubaga') Rubaga
+              .form-group
+                // Parish
+                label(for='parish') Parish
+                input#parish(type='text', name='parish', placeholder='Enter your Parish', , minlength='3', maxlength='50', onblur='validateParish()')
+            .form-row
+              .form-group
+                // User ID
+                label(for='userid') User ID
+                input(type='text', placeholder='AO-MASAJJA-0001', name='userid', autocomplete='off', onblur='validateUserid()')
+              .form-group
+                // Registration Date
+                label(for='regdate') Registration Date
+                input#regdate(name='regdate', type='date', autocomplete='off') 
+            .form-row
+              // Password
+              .form-group
+                label(for='password') Password
+                input#password(type='password', name='password', placeholder='Create Password (Min. 8 Characters)')
               
-          .fields
-            label.bold(for='userId') User ID:
-            input#userId.input-field(autocomplete='off', type='text', placeholder='AO-MASAJJA-0001', name='userId')
-          .fields
-            label.bold(for='regDate') Registration Date:
-            input#regDate.input-field(autocomplete='off', type='text', placeholder='dd/mm/yyyy', name='regDate')
-          .fields
-            label.bold(for='password') Password:
-            input#password.input-field(autocomplete='off', type='password', placeholder='Enter your password', name='password')
-          
-        .row
-          button.button(name='submit', type='submit', value='Register') Register
+          button#submit(type='submit', name='submit', value='submit') Register
+        // Error/Success Message
+        .message-container.hidden
+          h3#message
+  script(src="/js/validateform.js") 
+

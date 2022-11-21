@@ -20,7 +20,7 @@ router.post("/registration", async (req, res) => {
     if (userIdExist && userNinExist) {
       return res.status(400).send("This user already exists, please try again");
     } else {
-      // wcapture password for each reg user while we await post
+      // capture password for each reg user while we await post
       await RegisterUser.register(user, req.body.password, (error) => {
         if (error) {
           throw error;

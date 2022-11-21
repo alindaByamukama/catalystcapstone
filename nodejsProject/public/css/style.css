@@ -79,6 +79,13 @@ fieldset {
   margin-bottom: 2px;
   width: 100%;
 }
+input-valid {
+  border: 1px solid rgb(66, 243, 12);
+}
+
+input-invalid {
+  border: 1px solid red;
+}
 .button {
   border: none;
   box-shadow: 0 2px #1c5b85;

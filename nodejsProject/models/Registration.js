@@ -2,17 +2,12 @@ const mongoose = require("mongoose");
 const passportLocalMongoose = require("passport-local-mongoose");
 
 const userSchema = new mongoose.Schema({
-  firstname: {
+  fullname: {
     type: String,
     required: true,
     trim: true,
   },
-  lastname: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  telephone: {
+  phone: {
     type: String,
     required: true,
   },
@@ -23,7 +18,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  userId: {
+  userid: {
     type: String,
     required: true,
   },
@@ -39,23 +34,21 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    required: true,
   },
   nin: {
     type: String,
   },
-  regDate: {
+  regdate: {
     type: String,
-    required: true,
   },
-  mStatus: {
+  mstatus: {
     type: String,
   },
 });
 
 // specifiy what we use to login
 userSchema.plugin(passportLocalMongoose, {
-  usernameField: "userId",
+  usernameField: "userid",
 });
 // collection is called RegisterUser in mongodb
 module.exports = mongoose.model("RegisterUser", userSchema);
