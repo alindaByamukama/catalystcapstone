@@ -18,6 +18,7 @@ block content
           h5.card-header Profile Information
           .card-body      
             h1 Hello, #{currentuser.firstname+" "+currentuser.lastname}    
+            h2 Your UserID is #{currentuser.userId}
         br
         .card.shadow
           h5.card-header Registered UFs
@@ -41,7 +42,7 @@ block content
                         td #{urbanfarmer.division}
                         td #{urbanfarmer.parish}                
                         td  
-                          a.btn.btn-primary(href='/update/'+urbanfarmer._id, target='_blank') Update
+                          a.btn.btn-primary(href='/user/update/'+urbanfarmer._id, target='_blank') Update
                         td
                           form(method='post' action='/user/delete')
                             input(type="hidden", placeholder='', name='id', value=urbanfarmer._id)

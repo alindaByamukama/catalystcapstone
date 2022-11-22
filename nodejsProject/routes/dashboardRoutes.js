@@ -60,7 +60,7 @@ router.get(
   async (req, res) => {
     try {
       // const order = { _id: -1 }; // sort based on a param
-      let products = await UploadProduct.find().sort({ $natural: -1 });
+      let products = await UploadProduct.find();
       res.render("dashboard/uf", {
         products: products,
         currentuser: req.session.user,

@@ -17,9 +17,10 @@ block content
             .card.shadow
               h5.card-header Profile Information
               .card-body
-                h1 Hello, #{currentuser.firstname+" "+currentuser.lastname}
+                h1 Hello, #{currentuser.firstname+" "+currentuser.lastname }
+                h2 Your UserID is #{currentuser.userId} 
 
-                a.btn.btn-primary(href='#') Update Profile
+                //- a.btn.btn-primary(href='#') Update Profile
                 
             br
             // Registered FOs
@@ -45,9 +46,9 @@ block content
                             td #{farmerone.division}
                             td #{farmerone.parish}                
                             td  
-                              a.btn.btn-primary(href='/update/'+farmerone._id, target='_blank') Update
+                              a.btn.btn-primary(href='/user/update/'+farmerone._id, target='_blank') Update
                             td
-                              form(method='post' action='/delete')
+                              form(method='post' action='/user/delete')
                                 input(type="hidden", placeholder='', name='id', value=farmerone._id)
                                 a.btn.btn-danger(href='#') Delete
             br
@@ -57,3 +58,8 @@ block content
               .card-body 
                 a.btn.btn-primary(href='/registration', target='_blank') Register Farmer One               
             br
+      // footer section
+    footer.footer.mt-auto.py-3.bg-light
+      .container
+        span.text-muted
+          | UFARM_Alinda_B &copy; 2022_Catalyst_Cohort12

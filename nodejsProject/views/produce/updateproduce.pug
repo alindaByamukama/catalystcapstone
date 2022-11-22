@@ -8,12 +8,15 @@ html(lang='en')
     link(rel='stylesheet', href='/css/style.css')
   body
     .form-container
-        form(action='/produce/update?id='+product._id name='updateproduce', enctype="multipart/form-data", method='POST')
+        form(action='/produce/update?id='+product._id name='updateproduce', method='POST')
             h1 Produce Update Form
                 br
                 hr
-                label(for='produceimg') Produce Image:
-                input#produceimg.input-field(type='file', name='produceimg', value=product.produceimg)
+
+                label.bold(for='ufid') Urban Farmer ID:
+                select#ufid.input-field(name="ufid")               
+                  if currentuser 
+                    option(value=currentuser._id) #{currentuser.userId}
 
                 label(for='producename') Produce Name
                 input#producename.input-field(autocomplete='off', type='text', name='producename', value=product.producename)                
@@ -31,7 +34,7 @@ html(lang='en')
                 label(for='producetype') Produce Category
                 select#producetype.input-field(name="producetype") 
                   option(value="selectProduce" ) Select Produce Type
-                  option(value="poultry" selected = product.producetype === 'Poultry') Poultry 
+                  option(value="poultry" selected = product.producetype === 'poultry') Poultry 
                   option(value="dairy" selected = product.producetype === 'dairy') Dairy
                   option(value="horticulture" selected = product.producetype === 'horticulture') Horticulture
             

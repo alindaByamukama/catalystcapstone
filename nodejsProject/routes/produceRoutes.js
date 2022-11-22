@@ -48,8 +48,11 @@ router.post(
 router.get("/product/update/:id", async (req, res) => {
   try {
     const updateproduct = await Uploads.findOne({ _id: req.params.id });
-    res.render("produce/updateproduce", { product: updateproduct });
-    console.log("Product updated", updateproduct);
+    res.render("produce/updateproduce", {
+      currentuser: req.session.user,
+      product: updateproduct,
+    });
+    // console.log("Product: ", updateproduct);
   } catch (error) {
     res.status(400).send("Unable to update produce, try again");
   }
@@ -60,7 +63,7 @@ router.post("/product/update", async (req, res) => {
     await Uploads.findOneAndUpdate({ _id: req.query.id }, req.body);
     res.redirect("/dashboard/uf");
   } catch (error) {
-    res.status(400).send("Unable to post update produce, try again");
+    res.status(400).send("Unable to update produce, try again");
   }
 });
 // update images
@@ -68,7 +71,7 @@ router.post("/product/update", async (req, res) => {
 // delete product
 router.post("/product/delete", async (req, res) => {
   try {
-    await UploadProduct.deleteOne({ _id: req.body.id });
+    await Uploads.deleteOne({ _id: req.body.id });
     res.redirect("back");
   } catch (error) {
     res.status(400).send("Unable to delete produce, try again");
@@ -77,25 +80,25 @@ router.post("/product/delete", async (req, res) => {
 
 // PRODUCT APPROVAL ROUTE
 
-router.get("/produce/approve/:id", async (req, res) => {
-  try {
-    const updateproduct = await UploadProduct.findOne({ _id: req.params.id });
-    res.render("produce/approveproduce", { produce: updateproduct });
-    console.log("Product approved", updateproduct);
-  } catch (error) {
-    res.status(400).send("Unable to approve produce, try again");
-  }
-});
+// router.get("/produce/approve/:id", async (req, res) => {
+//   try {
+//     const updateproduct = await UploadProduct.findOne({ _id: req.params.id });
+//     res.render("produce/approveproduce", { produce: updateproduct });
+//     console.log("Product approved", updateproduct);
+//   } catch (error) {
+//     res.status(400).send("Unable to approve produce, try again");
+//   }
+// });
 // post updated product to producelist
-router.post("/produce/approve", async (req, res) => {
-  try {
-    produce.produceimg = req.file.path;
-    await Upload.findOneAndUpdate({ _id: req.query.id }, req.body);
-    res.redirect("/dashboard/fo");
-  } catch (error) {
-    res.status(400).send("Unable to approve produce, try again");
-  }
-});
+// router.post("/produce/approve", async (req, res) => {
+//   try {
+//     produce.produceimg = req.file.path;
+//     await Upload.findOneAndUpdate({ _id: req.query.id }, req.body);
+//     res.redirect("/dashboard/fo");
+//   } catch (error) {
+//     res.status(400).send("Unable to approve produce, try again");
+//   }
+// });
 
 // make router file available for use to the outside
 module.exports = router;
