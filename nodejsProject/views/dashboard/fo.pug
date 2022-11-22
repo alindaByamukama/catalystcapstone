@@ -18,7 +18,22 @@ block content
           h5.card-header Profile Information
           .card-body      
             h1 Hello, #{currentuser.firstname+" "+currentuser.lastname}    
-            h2 Your UserID is #{currentuser.userId}
+            table 
+                  thead 
+                        th Full Name
+                        th User ID
+                        th NIN Number
+                        th Phone number
+                        th Division
+                        th Parish
+                  tbody 
+                        tr 
+                            td #{currentuser.firstname+" "+currentuser.lastname}
+                            td #{currentuser.userId}
+                            td #{currentuser.nin}
+                            td #{currentuser.telephone}
+                            td #{currentuser.division}
+                            td #{currentuser.parish}
         br
         .card.shadow
           h5.card-header Registered UFs

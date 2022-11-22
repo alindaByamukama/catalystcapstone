@@ -18,7 +18,22 @@ block content
               h5.card-header Profile Information
               .card-body
                 h1 Hello, #{currentuser.firstname+" "+currentuser.lastname }
-                h2 Your UserID is #{currentuser.userId} 
+                table 
+                  thead 
+                        th Full Name
+                        th User ID
+                        th NIN Number
+                        th Phone number
+                        th Division
+                        th Parish
+                  tbody 
+                        tr 
+                            td #{currentuser.firstname+" "+currentuser.lastname}
+                            td #{currentuser.userId}
+                            td #{currentuser.nin}
+                            td #{currentuser.telephone}
+                            td #{currentuser.division}
+                            td #{currentuser.parish}
 
                 //- a.btn.btn-primary(href='#') Update Profile
                 
@@ -58,8 +73,3 @@ block content
               .card-body 
                 a.btn.btn-primary(href='/registration', target='_blank') Register Farmer One               
             br
-      // footer section
-    footer.footer.mt-auto.py-3.bg-light
-      .container
-        span.text-muted
-          | UFARM_Alinda_B &copy; 2022_Catalyst_Cohort12
