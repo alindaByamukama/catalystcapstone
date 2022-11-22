@@ -1,0 +1,44 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title UFARM | Produce Update
+    link(rel='stylesheet', href='/css/style.css')
+  body
+    .form-container
+        form(action='/produce/update?id='+product._id name='updateproduce', method='POST')
+            h1 Produce Update Form
+                br
+                hr
+
+                label.bold(for='ufid') Urban Farmer ID:
+                select#ufid.input-field(name="ufid")               
+                  if currentuser 
+                    option(value=currentuser._id) #{currentuser.userId}
+
+                label(for='producename') Produce Name
+                input#producename.input-field(autocomplete='off', type='text', name='producename', value=product.producename)                
+
+                label(for='produceprice') Produce Price
+                input#produceprice.input-field(autocomplete='off', type='text', name='produceprice', value=product.produceprice)
+
+                label(for='producequantity') Produce Quantity
+                input#producequantity.input-field(autocomplete='off', type='text', name='producequantity', value=product.producequantity)
+                select#measurement.input-field(name="measurement") 
+                  option(value="selectProduce") Select Measurement
+                  option(value="kilogram" selected = product.producequantity === 'kilogram') Kilogram  
+                  option(value="litre" selected = product.producequantity === 'litre') Litre
+
+                label(for='producetype') Produce Category
+                select#producetype.input-field(name="producetype") 
+                  option(value="selectProduce" ) Select Produce Type
+                  option(value="poultry" selected = product.producetype === 'poultry') Poultry 
+                  option(value="dairy" selected = product.producetype === 'dairy') Dairy
+                  option(value="horticulture" selected = product.producetype === 'horticulture') Horticulture
+            
+                label.bold(for='uploadDate') Upload Date:
+                input#uploadDate.input-field(autocomplete='off', type='text', placeholder='dd/mm/yyyy', name='uploadDate', value=product.uploadDate)
+
+                button.button(name='submit', type='submit', value='Update Produce') Update Produce

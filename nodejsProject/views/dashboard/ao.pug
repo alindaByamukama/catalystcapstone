@@ -1,0 +1,75 @@
+extends layout 
+block content
+    // topnav with logo
+    nav.navbar.bg-light
+      .container-fluid
+        span.navbar-brand.mb-0.fs-2.align-self-center UFARM
+
+        nav.nav.d-flex.nav-pills
+            //- a.nav-link.active(aria-current='page', href='#') AO DASHBOARD
+            //- a.nav-link(href='#') Registered FOs
+            //- a.nav-link(href='#') Registered FOs
+            //- a.nav-link(href='#') Product Reports
+            form(action="/logout", method="POST")     
+                button.nav-link(name='submit', type='submit') Logout
+    .col-2
+            // profile information
+            .card.shadow
+              h5.card-header Profile Information
+              .card-body
+                h1 Hello, #{currentuser.firstname+" "+currentuser.lastname }
+                table 
+                  thead 
+                        th Full Name
+                        th User ID
+                        th NIN Number
+                        th Phone number
+                        th Division
+                        th Parish
+                  tbody 
+                        tr 
+                            td #{currentuser.firstname+" "+currentuser.lastname}
+                            td #{currentuser.userId}
+                            td #{currentuser.nin}
+                            td #{currentuser.telephone}
+                            td #{currentuser.division}
+                            td #{currentuser.parish}
+
+                //- a.btn.btn-primary(href='#') Update Profile
+                
+            br
+            // Registered FOs
+            .card.shadow
+              h5.card-header Registered Farmer Ones
+              .card-body
+                table 
+                  thead 
+                        th Full Name
+                        th User ID
+                        th NIN Number
+                        th Phone number
+                        th Division
+                        th Parish
+                  tbody 
+                    if farmerones.length 
+                      each farmerone in farmerones 
+                        tr 
+                            td #{farmerone.firstname+" "+farmerone.lastname}
+                            td #{farmerone.userId}
+                            td #{farmerone.nin}
+                            td #{farmerone.telephone}
+                            td #{farmerone.division}
+                            td #{farmerone.parish}                
+                            td  
+                              a.btn.btn-primary(href='/user/update/'+farmerone._id, target='_blank') Update
+                            td
+                              form(method='post' action='/user/delete')
+                                input(type="hidden", placeholder='', name='id', value=farmerone._id)
+                                a.btn.btn-danger(href='#') Delete
+            br
+            
+            .card.shadow
+              h5.card-header Register Farmer One
+              .card-body 
+                a.btn.btn-primary(href='/registration', target='_blank') Register Farmer One               
+            br

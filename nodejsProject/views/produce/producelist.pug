@@ -1,0 +1,53 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title UFARM | Produce List
+    link(rel="stylesheet", href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    .row.justify-content-center 
+        div.col-md-12
+            div.card-body
+                header.card-header
+                    h4.card-title Produce List
+                br
+                nav
+                #nav-tab.nav.nav-tabs(role='tablist')
+                    a#nav-profile-tab.nav-item.nav-link(href='#')  #
+                #nav-tabContent.tab-content
+                br
+                table.table.table-bordered 
+                    thead
+                        tr
+                            th Produce Image
+                            th Produce Name
+                            th Produce Unit Price
+                            th Produce Type
+                            th Produce Quantity                              
+                            th Upload Date 
+                            th Update
+                            th Delete
+                    tbody
+                        if products.length
+                            each product in products
+                                tr
+                                    td
+                                        img(src="/"+product.produceimg, alt="image" width="150px" height="150px")
+                                    td #{product.producename}
+                                    td #{product.produceprice}
+                                    td #{product.producetype}
+                                    td #{product.producequantity}                           
+                                    td #{product.uploadDate}
+                                    //- td #{moment(us 
+                                    td
+                                        a.btn.btn-primary.btn-block(href='/produce/update/'+product._id) Update
+                                    td
+                                        form(method="post" action='/produce/delete')
+                                            input(type="hidden", placeholder="", name="id", value=product._id)
+                                            button.btn.btn-danger.btn-block(type="submit") Delete
+                div.form-row
+                    div.col.form-group
+                        a(class='button', href='/ufdashbard') Back

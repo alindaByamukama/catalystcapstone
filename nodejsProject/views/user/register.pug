@@ -1,0 +1,92 @@
+extends layout 
+block content
+      form#registrationForm(name='registrationForm', action='/registration', method='POST')
+        h1 UFARM Admin Registration Form
+        hr
+        br
+        fieldset.fieldset
+          legend Profile Details
+          .fields
+            label(for='firstname') First Name:
+            input#firstname.input-field(autocomplete='off', type='text', name='firstname', placeholder='Enter first name')
+
+          .fields
+            label(for='lastname') Second Name:
+            input#lastname.input-field(autocomplete='off', type='text', name='lastname', placeholder='Enter second name')
+
+          .fields             
+            label(for='gender') Gender:
+            //- input#gender.input-field(autocomplete='off', type='text', placeholder='Enter your gender', name='gender')
+            select#gender.input-field(name="gender") 
+              option(value="selectGender") Select Gender 
+              option(value="female") Female 
+              option(value="male") Male 
+              option(value="other") Other
+          .fields
+            label(for='mStatus') Marital Status:
+            //- input#mStatus.input-field(autocomplete='off', type='text', placeholder='Enter your marital status', name='mStatus')
+            select#mStatus.input-field(name="mStatus") 
+              option(value="maritalStatus") Marital Status
+              option(value="single") Single
+              option(value="married") Married
+              option(value="other") Other
+          .fields
+            label(for='dob') D.O.B:
+            input#dob.input-field(autocomplete='off', type='text', placeholder='dd/mm/yyyy', name='dob')
+
+          .fields
+            label(for='nin') NIN:
+            input#nin.input-field(autocomplete='off', type='text', placeholder='AB12345678ABCD', name='nin')
+
+          .fields
+            label(for='telephone') Mobile Number
+            |  
+            input#telephone.input-field(autocomplete='off', type='numbers', placeholder='+256771234567', name='telephone')
+          
+          .fields
+            label(for='email') Email
+            input#email.input-field(type='text', placeholder='Enter Email', name='email')                   
+
+        br
+        fieldset.fieldset
+          legend Login Details
+          .fields
+            label.bold(for='role') Role:
+            //- input#role.input-field(autocomplete='off', type='text', placeholder='Enter your role', name='role')
+            select.input-field(name="role", id="role")
+              option(value="selectrole") Select Role
+              option(value="agriculturalofficer") Agricultural Officer
+              option(value="farmerone") Farmer One
+              option(value="urbanfarmer") Urban Farmer
+
+          .fields             
+            label(for='division') Division:
+            //- input#address.input-field(autocomplete='off', type='text', placeholder='Enter your Address', name='address')
+            select#division.input-field(name="division") 
+              option(value="selectAddress") Select division
+              option(value="kampalaCentral") Kampala Central 
+              option(value="kawempe") Kawempe 
+              option(value="makindye") Makindye 
+              option(value="nakawa") Nakawa   
+              option(value="lubaga") Lubaga 
+          .fields             
+            label(for='parish') Parish:
+            input#parish.input-field(autocomplete='off', type='text', placeholder='Enter your Parish', name='parish')
+              
+          .fields
+            label.bold(for='userId') User ID:
+            input#userId.input-field(autocomplete='off', type='text', placeholder='AO-MASAJJA-0001', name='userId')
+          .fields
+            label.bold(for='regDate') Registration Date:
+            input#regDate.input-field(autocomplete='off', type='text', placeholder='dd/mm/yyyy', name='regDate')
+          .fields
+            label.bold(for='password') Password:
+            input#password.input-field(autocomplete='off', type='password', placeholder='Enter your password', name='password')
+          
+        .row
+          button.button(name='submit', type='submit', value='Register') Register
+      // footer section
+      footer.footer.mt-auto.py-3.bg-light
+        .container
+          span.text-muted
+            | UFARM_Alinda_B &copy; 2022_Catalyst_Cohort12  

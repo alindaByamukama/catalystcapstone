@@ -1,0 +1,33 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title UFarm | Login
+    link(rel='stylesheet', href='/css/form.css')
+  body
+    .form-container
+      form#registrationForm(name='registrationForm', action='/login', method='POST')
+        h1 Login Form
+        hr
+        br
+        fieldset.fieldset
+          legend Login  
+
+          .fields
+            label.bold(for='userId') User ID:
+            input#userId.input-field(autocomplete='off', type='text', placeholder='AO-MASAJJA-0001', name='userId')                       
+        
+          .fields
+            label.bold(for='password') Password:
+            input#password.input-field(autocomplete='off', type='password', placeholder='Enter your password', name='password')
+        .row
+          .fields
+            button.button(name='submit', type='submit') Login
+    // footer section
+    footer.footer.mt-auto.py-3.bg-light
+      .container
+        span.text-muted
+          | UFARM_Alinda_B &copy; 2022_Catalyst_Cohort12  
+  script(src='/js/validation.js')
